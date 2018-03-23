@@ -4,12 +4,12 @@
         <!-- production version, optimized for size and speed -->
         <script src="https://cdn.jsdelivr.net/npm/vue"></script>
         <style>
-            .left{
+            #left{
                 float:left;
                 width:calc(50% - 2px);
                 border-right:solid black 2px;
             }
-            .right{
+            #right{
                 float:left;
                 width:50%;
                 height:inherit;
@@ -30,6 +30,9 @@
                 width: 150px;
                 float:left;
             }
+            .input-group{
+                margin-bottom:2px;
+            }
 
         </style>
         
@@ -37,7 +40,8 @@
     <body>
         <div id="app">
             <!-- Partie de gauche : Formulaire -->
-            <div class="left">
+            <div id="left">
+                <form>
                 <div class="input-group">
                 <label class="write" for="nomCli">Nom Entité : </label>
                 <input id="nomCli" name="nomCli" v-model="nomEnt">
@@ -83,9 +87,11 @@
                      name="sexe" value="Madame" v-model="genre">
                     <label for="ChF">♀</label>
                 </div>
+                <input type="submit" value="Valider"/>
+                </form>
             </div>
             <!-- Partie de droite : Aperçu de la LC -->
-            <div class="right">
+            <div id="right">
             
                 <div id="apercu">
                     <img src="logo.jpg" class="logoAper"/>
@@ -148,6 +154,7 @@
                 var largeur = document.getElementById('apercu').offsetWidth;
                 var longueur = (largeur*297)/210;
                 document.getElementById('apercu').style.height = longueur+"px";
+                document.getElementById('left').style.minHeight = longueur+"px";
             }
             makeA4();
         </script>
