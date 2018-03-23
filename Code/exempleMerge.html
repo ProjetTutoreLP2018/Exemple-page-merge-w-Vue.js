@@ -18,12 +18,13 @@
                 border : solid black 1.5px;
                 width:70%;
                 margin:auto;
+                margin-bottom:10px;
             }
             .logoAper{
                 width:20%;
                 margin-left:10%;
             }
-            label
+            .write
             {
                 display: block; /* La balise devient de type block. */
                 width: 150px;
@@ -37,29 +38,50 @@
         <div id="app">
             <!-- Partie de gauche : Formulaire -->
             <div class="left">
-                <div>
-                <label for="nomCli">Nom Entité : </label>
+                <div class="input-group">
+                <label class="write" for="nomCli">Nom Entité : </label>
                 <input id="nomCli" name="nomCli" v-model="nomEnt">
                 </div>
-                <div>
-                <label for="fj">Forme juridique : </label>
+                <div class="input-group">
+                <label class="write" for="fj">Forme juridique : </label>
                 <input id="fj" name="fj" v-model="fj">
                 </div>
-                <div>
-                <label for="adr">Adresse : </label>
+                <div class="input-group">
+                <label class="write" for="adr">Adresse : </label>
                 <input id="adr" name="adr" v-model="adr">
                 </div>
-                <div>
-                <label for="cp">Code Postal : </label>
+                <div class="input-group">
+                <label class="write" for="cp">Code Postal : </label>
                 <input id="cp" name="cp" v-model="cp">
                 </div>
-                <div>
-                <label for="datedeb">Début Exercice : </label>
+                <div class="input-group">
+                <label class="write" for="datedeb">Début Exercice : </label>
                 <input type="date" id="datedeb" name="datedeb" v-model="datedeb">
                 </div>
-                <div>
-                <label for="datefin">Fin Exercice : </label>
+                <div class="input-group">
+                <label class="write" for="datefin">Fin Exercice : </label>
                 <input type="date" id="datefin" name="datefin" v-model="datefin">
+                </div>
+                <div class="input-group">
+                <label class="write" for="prenom">Prenom Client : </label>
+                <input id="prenom" name="prenom" v-model="prenom">
+                </div>
+                <div class="input-group">
+                <label class="write" for="nom">Nom Client : </label>
+                <input id="nom" name="nom" v-model="nom">
+                </div>
+                <div class="input-group">
+                <label class="write" for="fonction">Fonction Client : </label>
+                <input id="fonction" name="fonction" v-model="fonction">
+                </div>
+                <div>
+                    <input type="radio" id="ChH"
+                     name="sexe" value="Monsieur" v-model="genre">
+                    <label for="ChH">♂</label>
+
+                    <input type="radio" id="ChF"
+                     name="sexe" value="Madame" v-model="genre">
+                    <label for="ChF">♀</label>
                 </div>
             </div>
             <!-- Partie de droite : Aperçu de la LC -->
@@ -75,6 +97,12 @@
                     </div>
                     <div style="width:90%;margin-left:5%;font-size:12px;">
                         Objet : <b>Lettre de coopération comptable - Exercice {{ datedeb }} ~ {{ datefin }}</b>
+                        <br/>
+                        <br/>
+                        <u><i>A l'attention de {{ prenom }} {{ nom }}, {{ fonction }}</i></u>
+                        <br/>
+                        <span v-if="genre === 'Monsieur'">Cher {{ genre }},</span>
+                        <span v-else-if="genre === 'Madame'">Chère {{ genre }},</span>
                     </div>
                     
                     
@@ -93,10 +121,15 @@
                 adr: '',
                 cp: '',
                 datedeb: '',
-                datefin: ''
+                datefin: '',
+                prenom: '',
+                nom: '',
+                fonction: '',
+                genre: ''
               }
             })
         </script>
+        
         
         <!-- Mise en format A4 -->
         <script>
@@ -112,5 +145,7 @@
         <script>
             window.onresize = makeA4;
         </script>
+        <!-- Init -->
+        
     </body>
 </html>
