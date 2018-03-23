@@ -89,20 +89,28 @@
             
                 <div id="apercu">
                     <img src="logo.jpg" class="logoAper"/>
-                    <div style="text-align:right;width:90%;margin-left:5%;font-size:12px;">
+                    <div style="text-align:right;width:85%;margin-left:7.5%;font-size:12px;margin-bottom:5px;">
                         {{ nomEnt }}<br/>
                         ({{ fj }})<br/>
                         {{ adr }}<br/>
-                        {{ cp }}
+                        {{ cp }}<br/>
+                        <br/>
+                        Paris, le {{ dateContrat }}
                     </div>
-                    <div style="width:90%;margin-left:5%;font-size:12px;">
+                    <div style="width:85%;margin-left:7.5%;font-size:12px;">
                         Objet : <b>Lettre de coopération comptable - Exercice {{ datedeb }} ~ {{ datefin }}</b>
                         <br/>
                         <br/>
                         <u><i>A l'attention de {{ prenom }} {{ nom }}, {{ fonction }}</i></u>
                         <br/>
+                        <br/>
                         <span v-if="genre === 'Monsieur'">Cher {{ genre }},</span>
                         <span v-else-if="genre === 'Madame'">Chère {{ genre }},</span>
+                        <br/>
+                        <br/>
+                        Nous vous remercions de la confiance que vous nous avez témoignée en envisageant de nous
+                        confier, en qualité d’expert-comptable, une mission de présentation des comptes annuels de votre
+                        entité pour la période {{ datedeb }} ~ {{ datefin }}
                     </div>
                     
                     
@@ -113,6 +121,7 @@
         
         
         <script>
+            var ajd = new Date();
             var app = new Vue({
               el: '#app',
               data: {
@@ -125,7 +134,8 @@
                 prenom: '',
                 nom: '',
                 fonction: '',
-                genre: ''
+                genre: '',
+                dateContrat: ajd.getDate()+"/"+ajd.getMonth()+"/"+ajd.getFullYear()
               }
             })
         </script>
