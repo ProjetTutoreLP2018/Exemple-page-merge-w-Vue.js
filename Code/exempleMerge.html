@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- production version, optimized for size and speed -->
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <style>
+            .left{
+                float:left;
+                width:calc(50% - 2px);
+                border-right:solid black 2px;
+            }
+            .right{
+                float:left;
+                width:50%;
+                height:inherit;
+            }
+            #apercu{
+                border : solid black 1.5px;
+                width:70%;
+                margin:auto;
+            }
+            .logoAper{
+                width:20%;
+                margin-left:10%;
+            }
+            label
+            {
+                display: block; /* La balise devient de type block. */
+                width: 150px;
+                float:left;
+            }
+
+        </style>
+        
+    </head>
+    <body>
+        <div id="app">
+            <!-- Partie de gauche : Formulaire -->
+            <div class="left">
+                <div>
+                <label for="nomCli">Nom Entité : </label>
+                <input id="nomCli" name="nomCli" v-model="nomEnt">
+                </div>
+                <div>
+                <label for="fj">Forme juridique : </label>
+                <input id="fj" name="fj" v-model="fj">
+                </div>
+                <div>
+                <label for="adr">Adresse : </label>
+                <input id="adr" name="adr" v-model="adr">
+                </div>
+                <div>
+                <label for="cp">Code Postal : </label>
+                <input id="cp" name="cp" v-model="cp">
+                </div>
+                <div>
+                <label for="datedeb">Début Exercice : </label>
+                <input type="date" id="datedeb" name="datedeb" v-model="datedeb">
+                </div>
+                <div>
+                <label for="datefin">Fin Exercice : </label>
+                <input type="date" id="datefin" name="datefin" v-model="datefin">
+                </div>
+            </div>
+            <!-- Partie de droite : Aperçu de la LC -->
+            <div class="right">
+            
+                <div id="apercu">
+                    <img src="logo.jpg" class="logoAper"/>
+                    <div style="text-align:right;width:90%;margin-left:5%;font-size:12px;">
+                        {{ nomEnt }}<br/>
+                        ({{ fj }})<br/>
+                        {{ adr }}<br/>
+                        {{ cp }}
+                    </div>
+                    <div style="width:90%;margin-left:5%;font-size:12px;">
+                        Objet : <b>Lettre de coopération comptable - Exercice {{ datedeb }} ~ {{ datefin }}</b>
+                    </div>
+                    
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <script>
+            var app = new Vue({
+              el: '#app',
+              data: {
+                nomEnt: '',
+                fj: '',
+                adr: '',
+                cp: '',
+                datedeb: '',
+                datefin: ''
+              }
+            })
+        </script>
+        
+        <!-- Mise en format A4 -->
+        <script>
+            //210*297
+            function makeA4(){
+                var largeur = document.getElementById('apercu').offsetWidth;
+                var longueur = (largeur*297)/210;
+                document.getElementById('apercu').style.height = longueur+"px";
+            }
+            makeA4();
+        </script>
+        <!-- Hold changement de taille -->
+        <script>
+            window.onresize = makeA4;
+        </script>
+    </body>
+</html>
