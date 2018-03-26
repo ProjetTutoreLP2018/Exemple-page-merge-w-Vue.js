@@ -16,9 +16,24 @@ input.search:focus{
     padding-left:5px;
     padding-right:5px;
     background-color:white;
+    float:left;
+}
+
+.tools{
+    float:left;
+    padding-top:8.2px;
+    height:30px;
+    text-align:right;
+    width:calc(80% - 20px);
+}
+
+
+
+.equi{
+    font-size:24px;
 }
 
 header{
     background-color:#b2cd39;
-    padding:6px;
+    padding:10px;
 }
