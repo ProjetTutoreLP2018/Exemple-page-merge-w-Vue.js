@@ -1,6 +1,11 @@
 input.search{
     border:none;
     width:calc(100% - 20px);
+    margin-left:5px;
+}
+
+input.search:focus{
+    outline:none;
 }
 
 .searchgroup{
@@ -10,4 +15,10 @@ input.search{
     padding:2px;
     padding-left:5px;
     padding-right:5px;
+    background-color:white;
+}
+
+header{
+    background-color:#b2cd39;
+    padding:6px;
 }
